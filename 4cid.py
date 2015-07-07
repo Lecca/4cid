@@ -18,7 +18,7 @@ def main():
 		os.makedirs(ddir)
 	url = urlget(args.board, args.thread)
 	sturl = str(urllib.urlopen(url).read())
-	for _ in re.findall('//i.4cdn.org/\w+/\d*\.\w{3,4}?',sturl):
+	for _ in re.findall('//i.4cdn.org/\w+/\d*\.\w{3,4}',sturl):
 		try:
 			imgdir = os.path.join(ddir, _[15:])
 			imglink = 'http:'+_
