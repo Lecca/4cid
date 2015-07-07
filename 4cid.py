@@ -1,4 +1,8 @@
-import urllib.request as urllib, argparse, os, re
+import argparse, os, re
+try:
+	import urllib.request as urllib
+except ImportError:
+	import urllib
 
 def urlget(board, thread):
 	return("https://boards.4chan.org/"+board+"/thread/"+thread)
