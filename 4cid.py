@@ -13,7 +13,7 @@ def main():
 	parser.add_argument("thread")
 	args = parser.parse_args()
 	wdir = os.path.dirname(os.path.abspath(__file__))
-	ddir = os.path.join(wdir,'downloads',args.board,args.thread)
+	ddir = os.path.join(wdir,'4cid downloads',args.board,args.thread)
 	if not os.path.exists(ddir):
 		os.makedirs(ddir)
 	url = urlget(args.board, args.thread)
