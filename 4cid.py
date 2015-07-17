@@ -18,16 +18,18 @@ def main():
 		os.makedirs(ddir)
 	url = urlget(args.board, args.thread)
 	sturl = str(urllib.urlopen(url).read())
+	count = 0
 	for _ in re.findall('//i.4cdn.org/\w+/\d*\.\w{3,4}', sturl):
+		count+=1
 		try:
 			imgdir = os.path.join(ddir, _[15:])
-			urllib.urlretrieve('http://'+_, imgdir)
-			print('Downloaded http://'+_)
-		except Exception:
-			print(Exception)
+			urllib.urlretrieve('http:'+_, imgdir)
+			print('Downloaded http:'+_)
+		except Exception as e:
+			print(e)
 
 if __name__ == "__main__":
 	try:
 		main()
-	except Exception:
-		print(Exception)
+	except Exception as e:
+		print(e)
