@@ -16,17 +16,17 @@ def main():
 	ddir = os.path.join(wdir,'4cid downloads',args.board,args.thread)
 	if not os.path.exists(ddir):
 		os.makedirs(ddir)
-	url = urlget(args.board, args.thread)
-	sturl = str(urllib.urlopen(url).read())
-	count = 0
+	sturl = str(urllib.urlopen(urlget(args.board, args.thread)).read())
+	last = ''
 	for _ in re.findall('//i.4cdn.org/\w+/\d*\.\w{3,4}', sturl):
-		count+=1
-		try:
-			imgdir = os.path.join(ddir, _[15:])
-			urllib.urlretrieve('http:'+_, imgdir)
-			print('Downloaded http:'+_)
-		except Exception as e:
-			print(e)
+		if last != _:
+			try:
+				imgdir = os.path.join(ddir, _[15:])
+				urllib.urlretrieve('http:'+_, imgdir)
+				print('Downloaded http:'+_)
+			except Exception as e:
+				print()
+			last = _
 
 if __name__ == "__main__":
 	try:
